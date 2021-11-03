@@ -1,0 +1,64 @@
+<div class="container">
+    <h1>Signup</h1>
+    <mat-card>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <form *ngIf="!isLoading" (ngSubmit)="onSubmit(email, pass)">
+            <mat-form-field appearance="outline">
+                <mat-label>Enter email</mat-label>
+                <input matInput #email type="email" [formControl]="emailFormControl" placeholder="E-Mail" required>
+                <mat-error *ngIf="emailFormControl.hasError('email')">
+                    Please enter a valid email address!
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Enter password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" minlength="8" placeholder="Password" #pass required>
+                <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="passwordFormControl.hasError('required')">
+                    Password is required!
+                </mat-error>
+                <mat-error *ngIf="passwordFormControl.hasError('minlength')">
+                    Password must be at least 8 characters long!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="confirmPasswordFormControl" minlength="8" placeholder="Password" ormControlName="confirmPassword" #confirmPass required>
+                <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="confirmPasswordFormControl.hasError('required')">
+                    Please re-enter password!
+                </mat-error>
+                <mat-error *ngIf="confirmPasswordFormControl.hasError('minlength')">
+                    Password must be at least 8 characters long!
+                </mat-error>
+                <mat-hint id="hint-color" *ngIf="pass.value!==confirmPass.value && !confirmPasswordFormControl.hasError('required') && !confirmPasswordFormControl.hasError('minlength')">
+                    Both passwords must match!
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Company</mat-label>
+                <input matInput disabled value="FH Technikum Wien">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea matInput placeholder="Enter address"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput type="text" placeholder="Enter city">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Postal Code</mat-label>
+                <input matInput type="number" placeholder="Enter postal code">
+            </mat-form-field>
+            <a mat-raised-button class="siCSS" type="button" routerLink="/register">Register</a>
+        </form>
+    </mat-card>
+</div>
