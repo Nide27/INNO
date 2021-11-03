@@ -20,7 +20,9 @@ mat-spinner
 
 .cardC{
 
-    width: 500px;
+
+    max-width: 45%;
+    min-width: 325px;
     height: auto;
     margin: auto;
 }
@@ -29,18 +31,21 @@ h1
 {
     text-align: center;
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 
 .siCSS
 {
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: white;
+    background-color: black;
+}
 
-      border: 2px solid transparent;
-      border-radius: 30px;
-      color: white;
-      background-color: black;
-      margin-left: 26rem;
-    
-   
+.buttonSpace{
+    padding: 0;
+    margin: 0;
 }

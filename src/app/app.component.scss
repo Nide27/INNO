@@ -1,37 +1,18 @@
-// .container
-// {
-//     /* margin: 5%; */
-// }
-
-// .bgimg
-// {
-//     background-size: 75px;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     font-weight: 500;
-// }
-
 a
 {
     margin: 0.5em;
-    /* overflow: hidden;
-    max-height: 100px; */
+
 }
 
 .logo
 {
-    /* height: 100%; */
-    /* max-height: 100%; */
     height: 100px;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
 }
 
-// .right
-// {
-//   margin-left: auto;
-// }
+
 
 .toolColor
 {
@@ -40,13 +21,8 @@ a
 
 .logo
 {
-    // height: 100%;
-    max-height: 100%;
-    // height: 100px;
-    // margin-left: 10px;
-    // margin-right: 10px;
-    // margin-top: 10px;
-    margin: 10px 100px 10px 40px;
+  max-height: 100%;
+  margin: 10px 100px 10px 40px;
 }
 
 .btnDefault
@@ -58,10 +34,11 @@ a
   text-decoration: none;
   margin-right: 40px;
 
-  //for animation
+  //For animations
   display: inline-block;
   position: relative;
 }
+
 
 .btnDefault::before
 {
@@ -82,11 +59,11 @@ a
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-//end of animation
+
+//end animation
 
 .siCSS
 {
-  margin-left: auto;
   border: 2px solid white;
   border-radius: 30px;
   background-color: transparent;
@@ -106,6 +83,8 @@ a
 }
 
 
-// .righter{
-//   margin-left: auto;
-// }
+.container{
+  display:flex;
+  justify-content: flex-end;
+}
+

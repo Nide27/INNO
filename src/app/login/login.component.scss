@@ -5,8 +5,9 @@
 }
 
 .cardC{
-
-    width: 500px;
+    
+    max-width: 45%;
+    min-width: 325px;
     height: auto;
     margin: auto;
 }
@@ -34,12 +35,13 @@ h1
 
 .siCSS
 {
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: white;
+    background-color: black;
+}
 
-      border: 2px solid transparent;
-      border-radius: 30px;
-      color: white;
-      background-color: black;
-      margin-left: 26.3rem;
-    
-   
+.buttonSpace{
+    padding: 0;
+    margin: 0;
 }
