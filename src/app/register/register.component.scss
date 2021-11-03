@@ -1,21 +1,6 @@
-.container
-{
-    margin: 7%;
-
-}
-
-.cardC{
-    
-    max-width: 45%;
-    min-width: 325px;
-    height: auto;
-    margin: auto;
-}
-
 mat-form-field
 {
     width: 100%;
-    padding: auto;
 }
 
 mat-spinner
@@ -23,15 +8,34 @@ mat-spinner
     margin: auto;
 }
 
-h1 
+#hint-color
+{
+    color: black;
+}
+
+.container
+{
+    margin: 5%;
+}
+
+.cardC{
+
+
+    max-width: 45%;
+    min-width: 325px;
+    height: auto;
+    margin: auto;
+}
+
+h1
 {
     text-align: center;
     color: black;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 30px;
     font-weight: 500;
-    text-decoration: none;
 }
+
 
 .siCSS
 {
