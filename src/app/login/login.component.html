@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Sign in to Smart Maintenance</h1>
-  <mat-card>
+  <mat-card class = "cardC">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form *ngIf="!isLoading" (ngSubmit)="onSubmit(email, pass)">
     <mat-form-field appearance="outline">

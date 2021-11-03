@@ -42,6 +42,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { RegisterComponent } from './register/register.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -87,6 +88,7 @@ import { RegisterComponent } from './register/register.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    FlexLayoutModule
   ],
   exports: [MatButtonModule],
   providers: [],

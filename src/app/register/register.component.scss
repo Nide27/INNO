@@ -10,7 +10,7 @@ mat-spinner
 
 #hint-color
 {
-    color: #00802b;
+    color: black;
 }
 
 .container
@@ -18,10 +18,17 @@ mat-spinner
     margin: 5%;
 }
 
+.cardC{
+
+    width: 500px;
+    height: auto;
+    margin: auto;
+}
+
 h1
 {
     text-align: center;
-    color: #00802b;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -32,7 +39,8 @@ h1
       border: 2px solid transparent;
       border-radius: 30px;
       color: white;
-      background-color: #00802b;
+      background-color: black;
+      margin-left: 26rem;
     
    
 }
