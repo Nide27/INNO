@@ -4,14 +4,14 @@
 
   <mat-card class="cardC">
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form *ngIf="!isLoading" (ngSubmit)="onSubmit(email, pass)">
+    <form [formGroup]="loginForm" *ngIf="!isLoading" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Enter your email</mat-label>
-        <input matInput type="email" [formControl]="emailFormControl" #email placeholder="E-Mail" required>
-        <mat-error *ngIf="emailFormControl.hasError('email')">
+        <input matInput name="email" type="email" formControlName="email" #email placeholder="E-Mail" required>
+        <mat-error *ngIf="loginForm.hasError('email')">
           Please enter a valid email address!
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <mat-error *ngIf="loginForm.hasError('required')">
           Email is required!
         </mat-error>
       </mat-form-field>
@@ -20,13 +20,13 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" #pass
+        <input name="pw" matInput [type]="hide ? 'password' : 'text'" formControlName="pw" #pass
           placeholder="Password" required>
         <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="passwordFormControl.hasError('required')">
+        <mat-error *ngIf="loginForm.hasError('required')">
           Password is required!
         </mat-error>
       </mat-form-field>
@@ -36,7 +36,8 @@
       <mat-card-actions class="buttonSpace">
         <div fxFlex>
         </div>
-        <a mat-raised-button class="siCSS" type="button" routerLink="/login">Sign in</a>
+        <button type="submit">Login</button>
+        <a mat-raised-button class="siCSS" routerLink="/login">Sign in</a>
       </mat-card-actions>
 
     </form>
