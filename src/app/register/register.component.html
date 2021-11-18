@@ -6,7 +6,7 @@
         <form [formGroup]="registerForm" *ngIf="!isLoading" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
                 <mat-label>Enter username</mat-label>
-                <input matInput #username type="text" placeholder="Username" required>
+                <input matInput #username type="text" formControlName="username" placeholder="Username" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -22,7 +22,7 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Enter password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" minlength="8"
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" minlength="8"
                     placeholder="Password" #pass required>
                 <button mat-icon-button type="button" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -38,7 +38,7 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Confirm password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" minlength="8" placeholder="Password" formControlName="confirmPw" #confirmPass required>
+                <input matInput [type]="hide ? 'password' : 'text'" minlength="8" placeholder="Password" formControlName="passwordRepeat" #confirmPass required>
                 <button mat-icon-button type="button" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

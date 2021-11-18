@@ -8,6 +8,8 @@ import { catchError, retry, map} from 'rxjs/operators';
 })
 export class AuthService {
 
+  base_path = "http://localhost:3031";
+
   private authenticated: BehaviorSubject<boolean>;
   public isAuth: Observable<boolean>;
 
@@ -40,7 +42,7 @@ export class AuthService {
 
     console.log('Token: ' + token);
 
-    return this.http.post< {authenticated: boolean} >('http://localhost:3000/authenticate', JSON.stringify(credentials), this.httpOptions)
+    return this.http.post< {authenticated: boolean} >(this.base_path + '/authenticate', JSON.stringify(credentials), this.httpOptions)
         .pipe(map(response => {
               this.authenticated.next(response.authenticated);
               console.log(response.authenticated);
@@ -58,10 +60,10 @@ export class AuthService {
       return
     }
     */
-    return this.http.post<{ token: string, username: string, message: string }>('http://localhost:3000/login', loginForm, this.httpOptions)
+    return this.http.post<{success: boolean, token: string,  user: {id: string, username: string }}>(this.base_path + '/users/login', loginForm, this.httpOptions)
         .pipe(map(response => {
               localStorage.setItem('token', response.token);
-              localStorage.setItem('username', response.username);
+              localStorage.setItem('username', response.user.username);
               this.authenticated.next(true);
               return this.isAuth;
             }
@@ -76,10 +78,10 @@ export class AuthService {
       return
     }
     */
-    this.http.post<{ message: string }>('http://localhost:3000/signup', account, this.httpOptions)
+    this.http.post<{ msg: string }>(this.base_path + '/users/register', account, this.httpOptions)
         .subscribe({
           next: response => {
-            alert(response.message);
+            alert(response.msg);
             window.location.reload();
           },
           error: err => {
@@ -88,27 +90,4 @@ export class AuthService {
         })
   }
 
-  getHighscores(): any {
-    return this.http.get('http://localhost:3000/highscore');
-  }
-
-  addHighscore( username: string, points: number): any {
-    const highscore = {
-      username: username,
-      points: points
-    }
-
-    this.http.post('http://localhost:3000/highscore', JSON.stringify(highscore), this.httpOptions)
-        .subscribe({next: () => console.log('Highscore added')})
-  }
-
-  logout(): void {
-    this.http.post('http://localhost:3000/logout', this.httpOptions)
-        .subscribe({
-          next: () => {
-            localStorage.removeItem('token');
-            this.authenticated.next(false);
-          }
-        })
-  }
 }
