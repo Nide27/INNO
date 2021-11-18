@@ -6,12 +6,14 @@ let userSchema = new Schema(
     {
         email: {
             type: String,
+            unique: true,
         },
         username: {
             type: String,
         },
         password: {
             type: String,
+            minlength: 8,
         }
     }
 );
