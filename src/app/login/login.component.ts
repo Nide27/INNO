@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AppComponent } from '../app.component';
+import {AuthService} from "../_service/auth.service";
 
 
 @Component({
@@ -9,24 +10,32 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  emailFormControl = new FormControl('', [
-    Validators.email,
-    Validators.required
-  ]);
 
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  loginForm = new FormGroup({
+    email : new FormControl('', [Validators.required, Validators.email]),
+    pw : new FormControl('', Validators.required),
+  });
+
   hide = true;
   isLoading = false;
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
   
-  onSubmit(email : any, pass : any ) : void {
+  onSubmit() : void {
 
-
+    if (this.loginForm.valid) {
+      this.auth.login(JSON.stringify(this.loginForm.value))
+          .subscribe({
+            next: () => {
+              console.log('Logged in');
+            },
+            error: () => {
+              alert('Username/password don\'t match');
+            }
+          })
+    }
   }
 
 }
