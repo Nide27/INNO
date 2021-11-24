@@ -29,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
+    "ng2-file-upload": "^1.4.0",
     "nodemon": "^2.0.15",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

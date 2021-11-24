@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { AppComponent } from "../app.component";
 import { AuthService } from "../_service/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -16,18 +18,21 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   isLoading = false;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private snackbar: MatSnackBar, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+      
+  }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.auth.login(JSON.stringify(this.loginForm.value)).subscribe({
         next: () => {
-          console.log("Logged in");
+          this.snackbar.open("You have successfully logged in", "Okay");
+          this.router.navigate(["/home"]);
         },
         error: () => {
-          alert("Username/password don't match");
+          this.snackbar.open("Your e-mail doesn't match with your password", "Okay");
         },
       });
     }
