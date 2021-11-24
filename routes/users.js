@@ -35,7 +35,6 @@ router.post("/register", async (req, res) => {
 
                 user = user.save();
 
-                res.status(200).json({ msg: "User was created." });
 
             })
         })
