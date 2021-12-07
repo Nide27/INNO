@@ -1,8 +1,7 @@
 <div style="height: 80vh;">
   <mat-toolbar class="color">
     <mat-toolbar-row>
-      <a type="button" routerLink="/home"><img class="logo" src="/assets/img/gecco.png" routerLink="/login"
-          alt="logo"></a>
+      <a type="button" routerLink="/home"><img class="logo" src="/assets/img/gecco.png" alt="logo"></a>
 
       <div fxShow="true" fxHide.lt-md>
 
@@ -14,8 +13,9 @@
       </div>
       <span class="menu-spacer"></span>
       <div class="container" fxShow="true" fxHide.lt-md>
-        <a mat-button class="siCSS" type="button" routerLink="/login">Sign in</a>
-        <a mat-button class="caCSS" type="button" routerLink="/register">Create Account</a>
+        <a mat-button class="siCSS" type="button" *ngIf="!Authenticated()" routerLink="/login">Sign in</a>
+        <a mat-button class="caCSS" type="button" *ngIf="!Authenticated()" routerLink="/register">Create Account</a>
+        <a mat-button class="caCSS" type="button" *ngIf="Authenticated()" (click) = "logout()" routerLink="/home">Logout</a>
       </div>
       <button mat-icon-button (click)="sidenav.toggle()" style="text-align: right;" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
@@ -30,10 +30,16 @@
         <a mat-list-item type="button" routerLink="/sign-up">LOREM IPSUM</a>
         <a mat-list-item type="button" routerLink="/sign-up">DASHBOARD</a>
         <a mat-list-item type="button" routerLink="/faq">HOW TO ?</a>
-        <a mat-list-item type="button" routerLink="/login">Sign in</a>
-        <a mat-list-item type="button" routerLink="/register">Create Account</a>
+        <a mat-list-item type="button" *ngIf="!Authenticated()" routerLink="/login">Sign in</a>
+        <a mat-list-item type="button" *ngIf="!Authenticated()" routerLink="/register">Create Account</a>
+        <a mat-list-item type="button" *ngIf="Authenticated()" routerLink="/register">Logout</a>
       </mat-nav-list>
     </mat-sidenav>
+    <!-- <div class="form-group">
+      <label for="file">Choose File</label><br>
+      <input type="file" id="file">
+    </div> -->
+
     <router-outlet></router-outlet>
   </mat-sidenav-container>
 </div>

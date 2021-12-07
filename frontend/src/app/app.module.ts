@@ -45,8 +45,12 @@ import { RegisterComponent } from './register/register.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from "@angular/common/http";
 
+import { FileUploadModule } from 'ng2-file-upload';
+import { HomeComponent } from './home/home.component';
+
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -90,7 +94,8 @@ import { HttpClientModule } from "@angular/common/http";
     MatTooltipModule,
     MatTreeModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FileUploadModule
   ],
   exports: [MatButtonModule],
   providers: [],

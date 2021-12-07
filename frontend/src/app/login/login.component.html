@@ -21,9 +21,9 @@
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
         <input name="password" matInput [type]="hide ? 'password' : 'text'" formControlName="password" #pass
-          placeholder="Password" required>
+               placeholder="Password" required>
         <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide">
+                [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="loginForm.hasError('required')">
@@ -36,8 +36,8 @@
       <mat-card-actions class="buttonSpace">
         <div fxFlex>
         </div>
-        <button type="submit">Login</button>
-        <a mat-raised-button class="siCSS" routerLink="/login">Sign in</a>
+        <button  mat-raised-button class="siCSS" routerLink="/login"type="submit">Login</button>
+        <!-- <a mat-raised-button class="siCSS" routerLink="/login">Sign in</a> -->
       </mat-card-actions>
 
     </form>
