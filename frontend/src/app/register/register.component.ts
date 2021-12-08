@@ -36,13 +36,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(): void {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
+      //console.log(this.registerForm.value);
       this.auth.signup(JSON.stringify(this.registerForm.value));
-      this.snackbar.open(
-          "You have successfully registered your account",
-          "Okay"
-      );
-      this.router.navigate(["/login"]);
+
     }
   }
 }

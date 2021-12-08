@@ -1,9 +1,15 @@
 <mat-card class="cardC">
-    <p>Upload files:</p>
-    <br>
-    <input ng2FileSelect type="file" accept=".csv" [uploader]="uploader" />
-    <br>
-    <button type="submit" class="btn-large btn-submit">save</button>
+    
+        <p>Upload files:</p>
+        <br>
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept=".csv" required />
+        <br>
+        {{fileName || "No file uploaded yet."}}
+
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+
 </mat-card>
 
 <br>

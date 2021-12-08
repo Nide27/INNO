@@ -7,6 +7,8 @@ import {
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, retry, map } from "rxjs/operators";
 import { AppComponent } from "../app.component";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: "root",
@@ -17,7 +19,7 @@ export class AuthService {
     private authenticated: BehaviorSubject<boolean>;
     public isAuth: Observable<boolean>;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private snackbar: MatSnackBar, private router: Router) {
         this.authenticated = new BehaviorSubject<boolean>(false);
         this.isAuth = this.authenticated.asObservable();
     }
@@ -87,12 +89,30 @@ export class AuthService {
             )
             .subscribe({
                 next: (response) => {
-                    alert(response.msg);
-                    window.location.reload();
+                    //alert(response.msg);
+                    console.log(response.msg);
+                    this.snackbar.open(
+                        "You have successfully registered your account",
+                        "Okay"
+                    );
+                    this.router.navigate(["/login"]);
                 },
                 error: (err) => {
-                    alert(err.message);
+                    //alert(err.message);
+                    this.snackbar.open(
+                        "Unexpected Error occured",
+                        "Okay"
+                    );
                 },
             });
+    }
+
+    fileUpload(file: FormData): any{
+        this.http.post(this.base_path + "/data/upload", file)
+        .subscribe(res => {
+          console.log(res);
+          
+          alert('Uploaded Successfully.');
+        })
     }
 }

@@ -18,11 +18,13 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   isLoading = false;
-  constructor(private auth: AuthService, private snackbar: MatSnackBar, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private snackbar: MatSnackBar,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.loginForm.valid) {
@@ -32,7 +34,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["/home"]);
         },
         error: () => {
-          this.snackbar.open("Your e-mail doesn't match with your password", "Okay");
+          this.snackbar.open(
+            "Your e-mail doesn't match with your password",
+            "Okay"
+          );
         },
       });
     }

@@ -23,7 +23,6 @@ router.post('/upload', async (req, res) => {
             })
 
             const jsonArray = await csv().fromFile(csvFilePath);
-
             let upload = new Upload({
                 username: "Wingsuited123",
                 data: jsonArray
