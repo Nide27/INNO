@@ -31,13 +31,14 @@ router.post("/register", async (req, res) => {
                     email: email,
                     username: username,
                     password: hash,
-                })
+                });
 
-                user = user.save();
-
+                user.save();
 
             })
         })
+
+        return res.status(200).json({ msg: "User was created." });
 
     } catch (err) {
         res.status(400).json({
