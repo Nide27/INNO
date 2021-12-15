@@ -11,7 +11,11 @@ import { Router } from "@angular/router";
   styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private auth: AuthService, private snackbar: MatSnackBar, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private snackbar: MatSnackBar,
+    private router: Router
+  ) {}
 
   registerForm = new FormGroup({
     email: new FormControl("", [Validators.email, Validators.required]),
@@ -34,11 +38,25 @@ export class RegisterComponent implements OnInit {
   };
 
   ngOnInit(): void {}
+
   onSubmit(): void {
     if (this.registerForm.valid) {
-      //console.log(this.registerForm.value);
-      this.auth.signup(JSON.stringify(this.registerForm.value));
-
+      this.isLoading = true;
+      console.log(this.registerForm.value);
+      this.auth.signup(JSON.stringify(this.registerForm.value)).subscribe({
+        next: () => {
+          this.snackbar.open(
+            "You have successfully registered your account",
+            "Okay"
+          );
+          this.isLoading = false;
+          this.router.navigate(["/login"]);
+        },
+        error: () => {
+          this.snackbar.open("Unexpected error occured!", "Okay");
+          this.isLoading = false;
+        },
+      });
     }
   }
 }

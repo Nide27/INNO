@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FileUploader } from "ng2-file-upload";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from "../_service/auth.service";
+import { AppComponent } from "../app.component";
+import { applySourceSpanToExpressionIfNeeded } from "@angular/compiler/src/output/output_ast";
+
 
 @Component({
   selector: "app-home",
@@ -10,14 +13,19 @@ import { AuthService } from "../_service/auth.service";
 })
 export class HomeComponent implements OnInit {
   fileName = "";
-  constructor(private auth: AuthService) {}
+  angular.module('myModule', ['chart.js']);
+  constructor(private auth: AuthService, private app: AppComponent) {}
 
+  isLoading = false;
   ngOnInit(): void {}
+
+  isAuth = this.app.Authenticated();
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
     if (file) {
+      this.isLoading = true;
       this.fileName = file.name;
 
       const formData = new FormData();
@@ -26,9 +34,10 @@ export class HomeComponent implements OnInit {
       let uName = localStorage.getItem("username");
       formData.append("username", uName!);
 
-      const upload$ = this.auth.fileUpload(formData);
+       this.auth.fileUpload(formData);
+      this.isLoading = false;
 
-      upload$.subscribe();
+
     }
   }
 
@@ -37,4 +46,5 @@ export class HomeComponent implements OnInit {
     removeAfterUpload: false,
     autoUpload: true,
   });
+ 
 }

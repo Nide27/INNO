@@ -11,11 +11,13 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
+
   static token = "";
   title = "myapp";
   authenticated: any;
   constructor(private auth: AuthService, private snackbar: MatSnackBar, private router: Router){
     this.authenticated = auth.isAuth;
+    
   }
 
   Authenticated(){
@@ -26,10 +28,12 @@ export class AppComponent {
       return false;
     }
   }
+
   logout() {
     AppComponent.token = "";
     this.snackbar.open("You've been successfully logged out!", "Okay");
     this.router.navigate(["/home"]);
+    location.reload();
   }
 
 

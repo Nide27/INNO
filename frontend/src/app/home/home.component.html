@@ -1,15 +1,23 @@
-<mat-card class="cardC">
-    
-        <p>Upload files:</p>
-        <br>
-        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept=".csv" required />
-        <br>
-        {{fileName || "No file uploaded yet."}}
+<link rel="stylesheet" href="bower_components/dist/angular-chart.css">
 
-        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
-            <mat-icon>attach_file</mat-icon>
-        </button>
+<mat-card *ngIf="isAuth" class="cardC">
 
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <p>Upload files:</p>
+    <br>
+    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept=".csv" required />
+    <br>
+    {{fileName || "No file uploaded yet."}}
+
+    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+
+</mat-card>
+
+<mat-card *ngIf="!isAuth" class ="cardC">
+    <p class ="logintext">You are not logged in. Please make sure to login in order to upload files</p>
+    <img class="logo" src="/assets/img/maskottchen.jpg" alt="logo">
 </mat-card>
 
 <br>

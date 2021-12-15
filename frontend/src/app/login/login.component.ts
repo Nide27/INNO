@@ -28,12 +28,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       this.auth.login(JSON.stringify(this.loginForm.value)).subscribe({
         next: () => {
+          this.isLoading = false;
           this.snackbar.open("You have successfully logged in", "Okay");
           this.router.navigate(["/home"]);
         },
         error: () => {
+          this.isLoading = false;
           this.snackbar.open(
             "Your e-mail doesn't match with your password",
             "Okay"

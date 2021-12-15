@@ -9,6 +9,7 @@ import { catchError, retry, map } from "rxjs/operators";
 import { AppComponent } from "../app.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { RegisterComponent } from "../register/register.component";
 
 @Injectable({
     providedIn: "root",
@@ -66,8 +67,8 @@ export class AuthService {
             .post<{
                 success: boolean;
                 token: string;
-                user: { id: string; username: string };
-            }>(this.base_path + "/users/login", loginForm, this.httpOptions)
+                user: { id: string; username: string };}>
+            (this.base_path + "/users/login", loginForm, this.httpOptions)
             .pipe(
                 map((response) => {
                     localStorage.setItem("token", response.token);
@@ -81,30 +82,19 @@ export class AuthService {
     }
 
     signup(account: string): any {
-        this.http
+        return this.http
             .post<{ msg: string }>(
-                this.base_path + "/users/register",
-                account,
-                this.httpOptions
-            )
-            .subscribe({
-                next: (response) => {
+                this.base_path + "/users/register", account, this.httpOptions)
+            .pipe(
+                map((response) => {
                     //alert(response.msg);
-                    console.log(response.msg);
-                    this.snackbar.open(
-                        "You have successfully registered your account",
-                        "Okay"
-                    );
-                    this.router.navigate(["/login"]);
-                },
-                error: (err) => {
-                    //alert(err.message);
-                    this.snackbar.open(
-                        "Unexpected Error occured",
-                        "Okay"
-                    );
-                },
-            });
+                    console.log("test");
+                    this.authenticated.next(true);
+
+                    console.log(this.isAuth);
+                    return this.isAuth;
+                }),
+            );
     }
 
     fileUpload(file: FormData): any{
