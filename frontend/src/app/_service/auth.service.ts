@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import {
     HttpClient,
     HttpHeaders,
-    HttpClientModule,
+    HttpClientModule, HttpResponse,
 } from "@angular/common/http";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, retry, map } from "rxjs/operators";
@@ -98,11 +98,37 @@ export class AuthService {
     }
 
     fileUpload(file: FormData): any{
-        this.http.post(this.base_path + "/data/upload", file)
+        this.http.post(this.base_path + "/upload/data", file)
         .subscribe(res => {
           console.log(res);
           
           alert('Uploaded Successfully.');
         })
+    }
+
+    getData(): any{
+        return this.http
+            .get<{
+            status: boolean;
+            message: string;
+            data: any;
+            }>(this.base_path + "/data/data", this.httpOptions)
+            .subscribe(res => {
+                console.log(res.data[1].data[0]);
+                return res.data;
+            })
+    }
+
+    getResponse(): Observable<HttpResponse<{
+        status: boolean;
+        message: string;
+        data: any;
+    }>> {
+        return this.http.get<{
+            status: boolean;
+            message: string;
+            data: any;
+        }>(
+            this.base_path + "/data/data", { observe: 'response' });
     }
 }

@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/upload', async (req, res) => {
     try {
+
         if(!req.files) {
             res.send({
                 status: false,
@@ -23,8 +24,9 @@ router.post('/upload', async (req, res) => {
             })
 
             const jsonArray = await csv().fromFile(csvFilePath);
+
             let upload = new Upload({
-                username: "Wingsuited123",
+                username: req.files.username,
                 data: jsonArray
             });
 
@@ -47,6 +49,23 @@ router.post('/upload', async (req, res) => {
             })
 
         }
+    } catch (err){
+        res.status(500).send(err);
+    }
+})
+
+router.get('/data', async (req, res) => {
+    try {
+        const uploadArray = await Upload.find({
+            username: "Wingsuited123"
+        })
+
+        res.send({
+            status: true,
+            message: 'Successfully retrieved data',
+            data: uploadArray
+        });
+
     } catch (err){
         res.status(500).send(err);
     }

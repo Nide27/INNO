@@ -48,6 +48,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { FileUploadModule } from "ng2-file-upload";
 import { HomeComponent } from "./home/home.component";
 
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,6 +102,7 @@ import { HomeComponent } from "./home/home.component";
     FlexLayoutModule,
     HttpClientModule,
     FileUploadModule,
+    ChartsModule
   ],
   exports: [MatButtonModule],
   providers: [],
