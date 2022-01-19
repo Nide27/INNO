@@ -1,15 +1,12 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 import {
     HttpClient,
     HttpHeaders,
-    HttpClientModule, HttpResponse,
+    HttpResponse
 } from "@angular/common/http";
-import { BehaviorSubject, Observable, throwError } from "rxjs";
-import { catchError, retry, map } from "rxjs/operators";
-import { AppComponent } from "../app.component";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { Router } from "@angular/router";
-import { RegisterComponent } from "../register/register.component";
+import {BehaviorSubject, Observable} from "rxjs";
+import {catchError, map, tap} from "rxjs/operators";
+
 
 @Injectable({
     providedIn: "root",
@@ -20,13 +17,13 @@ export class AuthService {
     private authenticated: BehaviorSubject<boolean>;
     public isAuth: Observable<boolean>;
 
-    constructor(private http: HttpClient, private snackbar: MatSnackBar, private router: Router) {
+    constructor(private http: HttpClient) {
         this.authenticated = new BehaviorSubject<boolean>(false);
         this.isAuth = this.authenticated.asObservable();
     }
 
     httpOptions = {
-        headers: new HttpHeaders({ "Content-Type": "application/json" }),
+        headers: new HttpHeaders({"Content-Type": "application/json"}),
     };
 
     currentStatus(): boolean {
@@ -67,14 +64,15 @@ export class AuthService {
             .post<{
                 success: boolean;
                 token: string;
-                user: { id: string; username: string };}>
+                user: { id: string; username: string };
+            }>
             (this.base_path + "/users/login", loginForm, this.httpOptions)
             .pipe(
                 map((response) => {
-                    localStorage.setItem("token", response.token);
+                    let token = response.token;
+                    localStorage.setItem('token', token);
                     localStorage.setItem("username", response.user.username);
                     this.authenticated.next(true);
-                    AppComponent.token = response.token;
                     console.log(response.token);
                     return this.isAuth;
                 })
@@ -87,8 +85,8 @@ export class AuthService {
                 this.base_path + "/users/register", account, this.httpOptions)
             .pipe(
                 map((response) => {
-                    //alert(response.msg);
-                    console.log("test");
+                    //todo
+                    console.log(response.msg);
                     this.authenticated.next(true);
 
                     console.log(this.isAuth);
@@ -97,27 +95,44 @@ export class AuthService {
             );
     }
 
-    fileUpload(file: FormData): any{
-        this.http.post(this.base_path + "/upload/data", file)
-        .subscribe(res => {
-          console.log(res);
-          
-          alert('Uploaded Successfully.');
-        })
+    fileUpload(file: FormData): any {
+        this.http.post(this.base_path + "/data/upload", file)
+            .subscribe(res => {
+                console.log(res);
+
+                alert('Uploaded Successfully.');
+            })
     }
 
-    getData(): any{
+    getData(): any {
         return this.http
             .get<{
+                status: boolean;
+                message: string;
+                data: any;
+            }>(this.base_path + "/data/data")
+            .subscribe(res => {
+                if (res.data.length > 0){
+                    return res.data;
+                }
+                return null;
+            })
+    }
+
+    getData2(): Observable<HttpResponse<{
+        status: boolean;
+        message: string;
+        data: any;
+    }>> {
+        return this.http.get<{
             status: boolean;
             message: string;
             data: any;
-            }>(this.base_path + "/data/data", this.httpOptions)
-            .subscribe(res => {
-                console.log(res.data[1].data[0]);
-                return res.data;
-            })
+        }>(this.base_path + "/data/data", {observe: 'response'})
     }
+
+
+
 
     getResponse(): Observable<HttpResponse<{
         status: boolean;
@@ -128,7 +143,6 @@ export class AuthService {
             status: boolean;
             message: string;
             data: any;
-        }>(
-            this.base_path + "/data/data", { observe: 'response' });
+        }>(this.base_path + "/data/data", {observe: 'response'});
     }
 }

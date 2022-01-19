@@ -43,7 +43,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { RegisterComponent } from "./register/register.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 
 import { FileUploadModule } from "ng2-file-upload";
 import { HomeComponent } from "./home/home.component";
@@ -105,7 +106,11 @@ import { ChartsModule } from 'ng2-charts';
     ChartsModule
   ],
   exports: [MatButtonModule],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpConfigInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

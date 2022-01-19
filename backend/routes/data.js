@@ -3,8 +3,9 @@ const csv = require('csvtojson');
 const fs = require('fs');
 const Upload = require("../models/upload");
 const router = express.Router();
+const auth = require("../middleware/auth");
 
-router.post('/upload', async (req, res) => {
+router.post('/upload', auth, async (req, res) => {
     try {
 
         if(!req.files) {
@@ -26,7 +27,7 @@ router.post('/upload', async (req, res) => {
             const jsonArray = await csv().fromFile(csvFilePath);
 
             let upload = new Upload({
-                username: req.files.username,
+                uid: req.userData.id,
                 data: jsonArray
             });
 
@@ -34,7 +35,7 @@ router.post('/upload', async (req, res) => {
 
             res.send({
                 status: true,
-                message: 'File is uploaded',
+                message: 'File was uploaded',
                 data: {
                     name: data.name,
                     mimetype: data.mimetype,
@@ -54,10 +55,11 @@ router.post('/upload', async (req, res) => {
     }
 })
 
-router.get('/data', async (req, res) => {
+router.get('/data', auth, async (req, res) => {
     try {
+
         const uploadArray = await Upload.find({
-            username: "Wingsuited123"
+            uid: req.userData.id
         })
 
         res.send({

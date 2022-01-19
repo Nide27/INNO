@@ -1,14 +1,10 @@
-<!-- <link rel="stylesheet" href="bower_components/dist/angular-chart.css"> -->
+<!--
 <script src="node_modules/chart.js/Chart.min.js"></script>
 <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
-
-<!-- <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series"
-    chart-options="options" chart-dataset-override="datasetOverride" (change)="testfunction()" chart-click="onClick">
-</canvas> -->
-
+-->
 
 <mat-card *ngIf="isAuth" class="cardC">
-    <div class="chart-wrapper edin">
+    <div class="chart-wrapper charts">
 
         <canvas baseChart
                 [datasets]="lineChartData"
@@ -20,12 +16,13 @@
                 [plugins]="lineChartPlugins">
         </canvas>
     </div>
-    <button class ="" (click)="getData()">getData</button>
+    <button mat-raised-button class="siCSS" (click)="getData()">getData</button>
+    <br>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-
+    <br>
     <p>Upload files:</p>
     <br>
-    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept=".csv" required />
+    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload accept=".csv" required/>
     <br>
     {{fileName || "No file uploaded yet."}}
 
@@ -33,13 +30,11 @@
         <mat-icon>attach_file</mat-icon>
     </button>
 
-
-
 </mat-card>
 
 <mat-card *ngIf="!isAuth" class="cardC">
     <p class="logintext">You are not logged in. Please make sure to login in order to upload files</p>
-    <img class="logo" src="/assets/img/maskottchen.jpg" alt="logo">
+    <img class="logo" src="/assets/img/wienerlinien.png" alt="logo">
 </mat-card>
 
 <br>

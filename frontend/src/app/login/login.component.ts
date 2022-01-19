@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { AppComponent } from "../app.component";
 import { AuthService } from "../_service/auth.service";
 import { Router } from "@angular/router";
 
@@ -16,6 +15,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl("", Validators.required),
   });
 
+
   hide = true;
   isLoading = false;
   constructor(
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     private snackbar: MatSnackBar,
     private router: Router
   ) {}
+
 
   ngOnInit(): void {}
 

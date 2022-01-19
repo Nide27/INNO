@@ -1,46 +1,40 @@
-.container
-{
-    margin: 7%;
-
+.container {
+  margin: 7%;
 }
 
-.cardC{
-
-    max-width: 45%;
-    min-width: 325px;
-    height: auto;
-    margin: auto;
+.cardC {
+  max-width: 45%;
+  min-width: 325px;
+  height: auto;
+  margin: auto;
 }
 
-mat-form-field
-{
-    width: 100%;
+
+mat-form-field {
+  width: 100%;
 }
 
-mat-spinner
-{
-    margin: auto;
+mat-spinner {
+  margin: auto;
 }
 
-h1
-{
-    text-align: center;
-    color: black;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    font-weight: 500;
-    text-decoration: none;
+h1 {
+  text-align: center;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  text-decoration: none;
 }
 
-.siCSS
-{
-    border: 2px solid transparent;
-    border-radius: 30px;
-    color: white;
-    background-color: black;
+.siCSS {
+  border: 2px solid transparent;
+  border-radius: 30px;
+  color: white;
+  background-color: black;
 }
 
-.buttonSpace{
-    padding: 0;
-    margin: 0;
+.buttonSpace {
+  padding: 0;
+  margin: 0;
 }

@@ -5,8 +5,6 @@
       <a type="button" routerLink="/home"><img class="logo" src="/assets/img/gecco.png" alt="logo"></a>
 
       <div fxShow="true" fxHide.lt-md>
-
-        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <a class="btnDefault" type="button" routerLink="/sign-up">LOREM IPSUM</a>
         <a class="btnDefault" type="button" routerLink="/sign-up">DASHBOARD</a>
         <a class="btnDefault" type="button" routerLink="/faq">HOW TO ?</a>
@@ -36,10 +34,6 @@
         <a mat-list-item type="button" *ngIf="Authenticated()" routerLink="/register">Logout</a>
       </mat-nav-list>
     </mat-sidenav>
-    <!-- <div class="form-group">
-      <label for="file">Choose File</label><br>
-      <input type="file" id="file">
-    </div> -->
 
     <router-outlet></router-outlet>
   </mat-sidenav-container>

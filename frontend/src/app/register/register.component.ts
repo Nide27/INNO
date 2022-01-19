@@ -1,4 +1,3 @@
-import { HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../_service/auth.service";
@@ -10,6 +9,7 @@ import { Router } from "@angular/router";
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"],
 })
+
 export class RegisterComponent implements OnInit {
   constructor(
     private auth: AuthService,
@@ -33,9 +33,6 @@ export class RegisterComponent implements OnInit {
   hide = true;
   isLoading = false;
 
-  httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json" }),
-  };
 
   ngOnInit(): void {}
 

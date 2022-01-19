@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 
 let uploadSchema = new Schema(
     {
-        username: {
+        uid: {
             type: String
         },
         data: {

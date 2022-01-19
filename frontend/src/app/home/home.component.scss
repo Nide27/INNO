@@ -11,10 +11,16 @@
   margin-top: 80px;
 }
 
-.edin{
+.charts{
   padding: 12%;
 }
 
+.siCSS {
+  border: 2px solid transparent;
+  border-radius: 30px;
+  color: white;
+  background-color: black;
+}
 
 .file-input {
   display: none;
@@ -29,8 +35,8 @@
 }
 
 .logo{
-  height: 250px;
-  width: auto;
+  height: auto;
+  width: 80%;
   display: block;
   margin-left: auto;
   margin-right: auto;
